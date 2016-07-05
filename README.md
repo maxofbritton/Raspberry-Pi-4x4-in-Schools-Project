@@ -93,10 +93,6 @@ With this converter, you can use any power source that is between 3 and 12 volts
 
 Next, solder your 5v output cable (input for the pi) into the hole on the right side labeled '+'. Then, solder your ground output cable (ground into the pi) into the hole on the right labeled '-'.
 
-Your result should look something like this.
-
-# insert image here!!!!!!!!!!!!!!!!!!!!
-
 #### Accelerometer and Light Sensor Loom
 [**ADXL345 - Triple-Axis Accelerometer (+-2g/4g/8g/16g) w/ I2C/SPI**](https://www.adafruit.com/products/1231)
 ![ADXL345](https://cdn-shop.adafruit.com/1200x900/1231-00.jpg)
@@ -109,22 +105,19 @@ Solder a red wire to the 'Vin' pin on both chips. Connect both of these cables t
 
 To  enable I2C on the ADXL345 chip, solder the 'CS' hole to the '3v3' hole.
 
-When you are finished, your loom should look something like this.
-
 # INSERT IMAGE HERE!!!!
 
 #### Buzzer
 [**Small Enclosed Piezo w/Wires**](https://www.adafruit.com/products/1740)
-# INSERT IMAGE HERE
-Simply solder the wires to your connections on the raspberry pi.
+
+Simply solder the wires on the buzzer to your connections on the raspberry pi.
+
 #### LED Loom
 
 [**Through-Hole Resistors - 220 ohm 5% 1/4W - Pack of 25**](https://www.adafruit.com/products/2780)
 [**Diffused White 3mm LED**](https://www.adafruit.com/products/778)
 
-# INSERT IMAGE HERE
-
-On two LED's, solder two 220 ohm resistors to the positive ends. Then, solder you wire connection to your two LED connections on the pi. Next, solder two wires to the negative ends of the LEDs. Then, solder these two wires together, and solder this connection to your LED ground pin. You will have three individual pin connections to the pi. Finally, wrap the connections in electrical tap. Your finished result should something like the loom in the image above.
+On two LED's, solder two 220 ohm resistors to the positive ends. Then, solder you wire connection to your two LED connections on the pi. Next, solder two wires to the negative ends of the LEDs. Then, solder these two wires together, and solder this connection to your LED ground pin. You will have three individual pin connections to the pi. Finally, wrap the connections in electrical tap.
 
 #### GPIO pin setup
 Each of the GPIO pins will be referenced to in the BMC Format.
@@ -134,7 +127,3 @@ Each of the GPIO pins will be referenced to in the BMC Format.
 - **Accleromter and Light Sensor:** positive (red) into 3v3 (pin 1), ground (black) into Ground (pin 9), SDA (blue) into GPIO2 (pin 3), SCL (orange) into GPIO3 (pin 5).
 - **Buzzer:** positive (grey) into GPIO21 (pin 40), ground (black) into Ground (pin 38).
 - **LEDs:** positive1 (red) into GPIO20 (pin 38), positive2 (red) into GPIO16 (pin 36), ground (black) into Ground (pin 34).
-
-Your GPIO pin connections should look similar to the following.
-
-# INSERT IMAGE HERE
