@@ -13,7 +13,7 @@ address = 0x6b
 
 class LSM6DS3:
     i2c = None
-    bullshit = 0
+    tempvar = 0
     global accel_center_x
     accel_center_x = 0
     global accel_center_y
@@ -125,8 +125,8 @@ class LSM6DS3:
         temp = 0
         temp += self.readFloatGyroX()
         if (temp > 3 or temp < 0):
-            self.bullshit += temp
-        return self.bullshit;
+            self.tempvar += temp
+        return self.tempvar;
 
     def calcGyro(self, rawInput):
         gyroRangeDivisor = 245 / 125; #500 is the gyro range (DPS)
