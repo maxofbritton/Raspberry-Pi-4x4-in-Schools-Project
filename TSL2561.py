@@ -1,9 +1,4 @@
-#!/usr/bin/python
-# Code sourced from AdaFruit discussion board: https://www.adafruit.com/forums/viewtopic.php?f=8&t=34922
-
 import sys
-# Not needed here. Thanks to https://github.com/mackstann for highlighting this.
-#import smbus
 import time
 
 import Adafruit_GPIO as GPIO
@@ -60,56 +55,5 @@ class TSL2561:
     def readFullCustom(self):
     	reg1=0x8C
     	reg2=0x8D
-#     	result = (256 * self.i2c.readU16(reg2)) + self.i2c.readU16(reg1)
     	result = self.i2c.readU16(reg2)
     	return result
-
-    def readIR(self, reg=0x8E):
-        """Reads IR only diode from the I2C device"""
-        return self.readWord(reg);
-
-    def readLux(self, gain = 0):
-        """Grabs a lux reading either with autoranging (gain=0) or with a specified gain (1, 16)"""
-        if (gain == 1 or gain == 16):
-            self.setGain(gain) # low/highGain
-            ambient = self.readFull()
-            IR = self.readIR()
-        elif (gain==0): # auto gain
-            self.setGain(16) # first try highGain
-            ambient = self.readFull()
-            if (ambient < 65535):
-                IR = self.readIR()
-            if (ambient >= 65535 or IR >= 65535): # value(s) exeed(s) datarange
-                self.setGain(1) # set lowGain
-                ambient = self.readFull()
-                IR = self.readIR()
-
-        if (self.gain==1):
-           ambient *= 16    # scale 1x to 16x
-           IR *= 16         # scale 1x to 16x
-                        
-        ratio = (IR / float(ambient)) # changed to make it run under python 2
-
-        if (self.debug):
-            print "IR Result", IR
-            print "Ambient Result", ambient
-
-        if ((ratio >= 0) & (ratio <= 0.52)):
-            lux = (0.0315 * ambient) - (0.0593 * ambient * (ratio**1.4))
-        elif (ratio <= 0.65):
-            lux = (0.0229 * ambient) - (0.0291 * IR)
-        elif (ratio <= 0.80):
-            lux = (0.0157 * ambient) - (0.018 * IR)
-        elif (ratio <= 1.3):
-            lux = (0.00338 * ambient) - (0.0026 * IR)
-        elif (ratio > 1.3):
-            lux = 0
-
-        return lux
-
-if __name__ == "__main__":
-    tsl=TSL2561()
-    print tsl.readLux()
-#print "LUX HIGH GAIN ", tsl.readLux(16)
-#print "LUX LOW GAIN ", tsl.readLux(1)
-#print "LUX AUTO GAIN ", tsl.readLux()

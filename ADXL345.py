@@ -1,7 +1,3 @@
-#!/usr/bin/python
-# Code sourced from AdaFruit discussion board:
-# https://www.adafruit.com/forums/viewtopic.php?f=8&t=34922
-
 import sys
 import time
 import math
@@ -64,20 +60,14 @@ class ADXL345:
 		x_val = self.readRawAccelX() - accel_center_x
 		y_val = self.readRawAccelY() - accel_center_y
 		z_val = self.readRawAccelZ() - accel_center_z
-		
-# 		print x_val,accel_center_x,y_val,accel_center_y,z_val,accel_center_z
-		
-		#Work out the squares 
+
 		x2 = x_val*x_val
 		y2 = y_val*y_val
 		z2 = z_val*z_val
-		
-		#X Axis
+
 		result = math.sqrt(y2+z2)
-# 		print result
 		if (result != 0):
 			result = x_val/result
-# 		print result
 		accel_angle_x = math.atan(result)
 		
 		#Y Axis
